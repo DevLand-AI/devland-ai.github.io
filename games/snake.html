@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="DevLand.AI Documentation">
 
-<title>Games – DevLand.AI</title>
+<title>Snake Game</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,139 +20,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./games/snake.html" rel="next">
-<link href="./index.html" rel="prev">
-<link href="./logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-f23ab18612d661d7bd56dbc0c0fd3817.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-18eea8fc61e7613334e931e91aad4e89.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-27c3d2481e1f95eac8a4ed57cc4ceedf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-fdec91cc961f688a358a19ed782e915a.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<script src="snake_files/libs/clipboard/clipboard.min.js"></script>
+<script src="snake_files/libs/quarto-html/quarto.js"></script>
+<script src="snake_files/libs/quarto-html/popper.min.js"></script>
+<script src="snake_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="snake_files/libs/quarto-html/anchor.min.js"></script>
+<link href="snake_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="snake_files/libs/quarto-html/quarto-syntax-highlighting-f23ab18612d661d7bd56dbc0c0fd3817.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="snake_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="snake_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="snake_files/libs/bootstrap/bootstrap-e19dc0c07aeef78048e587c3f1edba7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
-<link rel="stylesheet" href="custom.css">
-<meta property="og:title" content="Games – DevLand.AI">
-<meta property="og:description" content="A side-by-side comparison of the Polars and Pandas libraries.">
-<meta property="og:image" content="logo.png">
-<meta property="og:site_name" content="DevLand.AI">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="fullcontent">
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./games.html">Games</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">DevLand.AI</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/DevLand-AI" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./games.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Games</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./games/snake.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Snake Game</span></span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
-<!-- main -->
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Games</h1>
+<h1 class="title">Snake Game</h1>
 </div>
 
 
@@ -170,13 +96,160 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>This is an asynchronous Snake Game environment designed for reinforcement learning or AI experiments. The snake moves automatically based on selected actions, and the goal is to maximize the score by eating food while avoiding collisions with walls or itself.</p>
+<hr>
+</section>
+<section id="functions" class="level1">
+<h1>Functions</h1>
+<section id="move" class="level3">
+<h3 class="anchored" data-anchor-id="move"><code>move</code></h3>
+<section id="input" class="level4">
+<h4 class="anchored" data-anchor-id="input">Input</h4>
+<p>This function accepts a number between <strong>[0, 1, 2]</strong> as <strong><em>input</em></strong>.</p>
+<p><strong><em>0</em></strong> — Step Front</p>
+<p><strong><em>1</em></strong> — Step Right</p>
+<p><strong><em>2</em></strong> — Step Left</p>
+<p>Please notice that the the default choice is set to <strong><em>move right</em></strong>.</p>
+</section>
+<section id="output" class="level4">
+<h4 class="anchored" data-anchor-id="output">Output</h4>
+<p>This function returns <strong><em>3 numbers</em></strong> as <strong><em>output</em></strong>.</p>
+<p><strong><em>game_over (int)</em></strong> — <strong><em>1</em></strong> if the game ends after this move; otherwise <strong><em>0</em></strong>.</p>
+<p><strong><em>score (int)</em></strong> — Current score after the move.</p>
+<p><strong><em>reward (int)</em></strong> — <strong><em>+10</em></strong> if the snake eats a food, <strong><em>-10</em></strong> if the snake collides with walls or itself; otherwise <strong><em>0</em></strong>.</p>
+</section>
+<section id="example" class="level4">
+<h4 class="anchored" data-anchor-id="example">Example</h4>
+<div id="edc75d4d" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>game_over, score, reward <span class="op">=</span> <span class="cf">await</span> move(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="get_state" class="level3">
+<h3 class="anchored" data-anchor-id="get_state"><code>get_state</code></h3>
+<section id="input-1" class="level4">
+<h4 class="anchored" data-anchor-id="input-1">Input</h4>
+<p>This function doesn’t accept any input.</p>
+</section>
+<section id="output-1" class="level4">
+<h4 class="anchored" data-anchor-id="output-1">Output</h4>
+<p>This function returns <strong><em>a list of 11 numbers</em></strong> as <strong><em>output</em></strong>.</p>
+</section>
+<section id="example-1" class="level4">
+<h4 class="anchored" data-anchor-id="example-1">Example</h4>
+<div id="437e9b1f" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>current_state <span class="op">=</span> get_state()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 40%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong><em>Index</em></strong></th>
+<th><strong><em>Feature</em></strong></th>
+<th><strong><em>Description</em></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>Danger Front</td>
+<td>Immediate danger straight ahead</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Danger Right</td>
+<td>Immediate danger to the right</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Danger Left</td>
+<td>Immediate danger to the left</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Moving Left</td>
+<td>Snake currently moving left</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Moving Right</td>
+<td>Snake currently moving right</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>Moving Up</td>
+<td>Snake currently moving up</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>Moving Down</td>
+<td>Snake currently moving down</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>Food Left</td>
+<td>Food is located to the left</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>Food Right</td>
+<td>Food is located to the right</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>Food Up</td>
+<td>Food is located above</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>Food Down</td>
+<td>Food is located below</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+</section>
+<section id="episodes-and-scoring" class="level1">
+<h1>Episodes and Scoring</h1>
 <ul>
-<li><a href="">Snake Game</a></li>
+<li>Each training/test session consists of 100 episodes (games).</li>
+<li>The metric considered in <strong><em>Leaderboard</em></strong> is <strong><em>Average Score</em></strong> and is calculated as:
+<ul>
+<li><code>Average_Score = Accumulative Sum / Number of Episodes</code></li>
+</ul></li>
 </ul>
+<hr>
+</section>
+<section id="sample-code" class="level1">
+<h1>Sample Code</h1>
+<div id="d51b542d" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>action_space <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> episode <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        game_over <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> game_over <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            game_over, score, reward <span class="op">=</span> <span class="cf">await</span> move(<span class="dv">0</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            new_state <span class="op">=</span> get_state()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.get_event_loop()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    loop.run_until_complete(main())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 
-
-
-</main> <!-- /main -->
+</main>
+<!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -197,150 +270,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -738,18 +667,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./games/snake.html" class="pagination-link" aria-label="Snake Game">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Snake Game</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
