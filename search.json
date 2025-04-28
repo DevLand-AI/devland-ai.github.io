@@ -1,0 +1,12 @@
+[
+  {
+    "objectID": "games.html",
+    "href": "games.html",
+    "title": "Games",
+    "section": "",
+    "text": "Overview\nThis is an asynchronous Snake Game environment designed for reinforcement learning or AI experiments. The snake moves automatically based on selected actions, and the goal is to maximize the score by eating food while avoiding collisions with walls or itself.\n\n\n\nFunctions\n\nmove\n\nInput\nThis function accepts a number between [0, 1, 2] as input.\n0 — Step Front\n1 — Step Right\n2 — Step Left\nPlease notice that the the default choice is set to move right.\n\n\nOutput\nThis function returns 3 numbers as output.\ngame_over (int) — 1 if the game ends after this move; otherwise 0.\nscore (int) — Current score after the move.\nreward (int) — +10 if the snake eats a food, -10 if the snake collides with walls or itself; otherwise 0.\n\n\nExample\n\ngame_over, score, reward = await move(0)\n\n\n\n\nget_state\n\nInput\nThis function doesn’t accept any input.\n\n\nOutput\nThis function returns a list of 11 numbers as output.\n\n\nExample\n\ncurrent_state = get_state()\n\n\n\n\n\n\n\n\n\nIndex\nFeature\nDescription\n\n\n\n\n0\nDanger Front\nImmediate danger straight ahead\n\n\n1\nDanger Right\nImmediate danger to the right\n\n\n2\nDanger Left\nImmediate danger to the left\n\n\n3\nMoving Left\nSnake currently moving left\n\n\n4\nMoving Right\nSnake currently moving right\n\n\n5\nMoving Up\nSnake currently moving up\n\n\n6\nMoving Down\nSnake currently moving down\n\n\n7\nFood Left\nFood is located to the left\n\n\n8\nFood Right\nFood is located to the right\n\n\n9\nFood Up\nFood is located above\n\n\n10\nFood Down\nFood is located below\n\n\n\n\n\n\n\n\nEpisodes and Scoring\n\nEach training/test session consists of 100 episodes (games).\nThe metric considered in Leaderboard is Average Score and is calculated as:\n\nAverage_Score = Accumulative Sum / Number of Episodes\n\n\n\n\n\nSample Code\n\nimport asyncio\n\naction_space = [0, 1, 2]\n\nasync def main():\n    for episode in range(100):\n        game_over = 0\n        while game_over == 0:\n            game_over, score, reward = await move(0)\n            new_state = get_state()\n\nif __name__ == \"__main__\":\n    loop = asyncio.get_event_loop()\n    loop.run_until_complete(main())\n\n\nSnake Game",
+    "crumbs": [
+      "Snake Game"
+    ]
+  }
+]
