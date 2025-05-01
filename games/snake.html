@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -187,7 +153,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#get_state" id="toc-get_state" class="nav-link" data-scroll-target="#get_state"><code>get_state</code></a></li>
   </ul></li>
   <li><a href="#episodes-and-scoring" id="toc-episodes-and-scoring" class="nav-link" data-scroll-target="#episodes-and-scoring">Episodes and Scoring</a></li>
-  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample Code</a></li>
   </ul>
 </nav>
     </div>
@@ -216,6 +181,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="overview" class="level1 unnumbered">
 <h1 class="unnumbered">Overview</h1>
 <p>This is an asynchronous Snake Game environment designed for reinforcement learning or AI experiments. The snake moves automatically based on selected actions, and the goal is to maximize the score by eating food while avoiding collisions with walls or itself.</p>
+<p><strong>NOTICE:</strong></p>
+<p>The game is developed with Unity and exported to WebGL, in order to be able to control it, You would need to first, make <strong>unityInstance</strong> visible by browser globally.</p>
+<p><code>window.gameInstance = unityInstance</code></p>
 <hr>
 </section>
 <section id="functions" class="level1 unnumbered">
@@ -232,23 +200,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="output" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="output">Output</h4>
-<p>This function returns <strong><em>3 numbers</em></strong> as <strong><em>output</em></strong>.</p>
-<p><strong><em>game_over (int)</em></strong> — <strong><em>1</em></strong> if the game ends after this move; otherwise <strong><em>0</em></strong>.</p>
-<p><strong><em>score (int)</em></strong> — Current score after the move.</p>
-<p><strong><em>reward (int)</em></strong> — <strong><em>+10</em></strong> if the snake eats a food, <strong><em>-10</em></strong> if the snake collides with walls or itself; otherwise <strong><em>0</em></strong>.</p>
+<p>This function returns <strong><em>a list of 3 numbers</em></strong> as <strong><em>output</em></strong>.</p>
+<p><strong><em>[game_over, score, reward] = window.action_result</em></strong>.</p>
+<p><strong>Details</strong> <strong><em>game_over (int)</em></strong> — <strong><em>1</em></strong> if the game ends after this move; otherwise <strong><em>0</em></strong>.</p>
+<p><strong><em>window.score (int)</em></strong> — Current score after the move.</p>
+<p><strong><em>window.reward (int)</em></strong> — <strong><em>+10</em></strong> if the snake eats a food, <strong><em>-10</em></strong> if the snake collides with walls or itself; otherwise <strong><em>0</em></strong>.</p>
 </section>
 <section id="example" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="example">Example</h4>
-<div id="80be7456" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>game_over, score, reward <span class="op">=</span> <span class="cf">await</span> move(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre><code>window.gameInstance.SendMessage("Snake", "Move", Number(0));
+
+[game_over, score, reward] = window.action_result;</code></pre>
 </section>
 </section>
 <section id="get_state" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="get_state"><code>get_state</code></h3>
 <section id="input-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="input-1">Input</h4>
-<p>This function doesn’t accept any input.</p>
+<p>This function doesn’t accept any input. You would be able to access the states by <code>window.current_state</code>.</p>
 </section>
 <section id="output-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="output-1">Output</h4>
@@ -256,9 +225,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="example-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="example-1">Example</h4>
-<div id="032367cd" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>current_state <span class="op">=</span> get_state()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre><code>window.gameInstance.SendMessage("Snake", "GetState");
+
+current_state = window.current_state;</code></pre>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -343,26 +312,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>Average_Score = Accumulative Score / Number of Episodes</code></li>
 </ul></li>
 </ul>
-<hr>
-</section>
-<section id="sample-code" class="level1 unnumbered">
-<h1 class="unnumbered">Sample Code</h1>
-<div id="c3720e3f" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>action_space <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> episode <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        game_over <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> game_over <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            game_over, score, reward <span class="op">=</span> <span class="cf">await</span> move(<span class="dv">0</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            new_state <span class="op">=</span> get_state()</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.get_event_loop()</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    loop.run_until_complete(main())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>To access scoring data, you can have a look at the following:</p>
+<p><strong><em>window.avg_score</em></strong></p>
+<p><strong><em>window.score</em></strong></p>
+<p><strong><em>window.best_score</em></strong></p>
+<p><strong><em>window.step</em></strong></p>
+<p><strong><em>window.episode</em></strong></p>
+<p><strong><em>window.max_episode</em></strong></p>
+<p><strong><em>window.max_possible_step</em></strong></p>
 
 
 </section>
